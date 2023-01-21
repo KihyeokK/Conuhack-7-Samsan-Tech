@@ -1,0 +1,11 @@
+form {
+    width: 45%;
+}
+
+textarea {
+    width: 90%;
+    border: none;
+    overflow: auto;
+    outline: none;
+    resize: none; /*remove the resize handle on the bottom right*/
+}
