@@ -38,7 +38,7 @@ class Diary(models.Model):
         # to update the mood field when we create the object
         if self.content == "Write Here":
             # access the file using the file path
-
+            
             pass
         self.mood = self.extract_mood(self.content)
         self.music = self.play_music()
