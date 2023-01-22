@@ -7,22 +7,19 @@ from .permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse # to return fully-qualified URLs; 
-# google login
-'''
-import requests
-from django.shortcuts import redirect
-from django.conf import settings
-from django.utils.translation import gettext_lazy as _
-from django.http import JsonResponse
-from json.decoder import JSONDecodeError
-from rest_framework import status
-from rest_framework.response import Response
-from dj_rest_auth.registration.views import SocialLoginView
-from allauth.socialaccount.providers.google import views as google_view
-from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-from allauth.socialaccount.models import SocialAccount
-from .models import CustomUser
-'''
+# react
+"""
+from django.shortcuts import render
+from rest_framework import viewsets
+
+class DiaryViewSet(viewsets.ModelViewSet):
+    '''
+    viewset provides basic CRUD (create, read, update, delete) functionality
+    '''
+    queryset = Diary.objects.all()
+    serializer_class = DiarySerializer
+"""
+
 class DiaryList(generics.ListCreateAPIView):
     queryset = Diary.objects.all()
     serializer_class = DiarySerializer

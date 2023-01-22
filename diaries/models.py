@@ -11,11 +11,13 @@ from django.utils.translation import ugettext_lazy as _
 from .managers import CustomUserManager
 '''
 
+fpath = ""
+
 # Create your models here.
 class Diary(models.Model):
     author = models.ForeignKey('auth.User', related_name='diaries', on_delete=models.CASCADE)
     title = models.CharField(max_length=120, default="no title", unique=True)
-    content = models.TextField()
+    content = models.TextField(default="Write Here")
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     is_liked = models.BooleanField(default=False)
     mood = models.CharField(max_length=10, null=True, blank=True)
@@ -34,6 +36,10 @@ class Diary(models.Model):
     
     def save(self, *args, **kwargs):
         # to update the mood field when we create the object
+        if self.content == "Write Here":
+            # access the file using the file path
+
+            pass
         self.mood = self.extract_mood(self.content)
         self.music = self.play_music()
         super().save(*args, **kwargs)
@@ -59,39 +65,10 @@ class Diary(models.Model):
         song_items = songs_dict['items']
         song = song_items[0]['external_urls']['spotify']
         return song
-        """
-        while True:
-            search_song = self.mood
-            results = spotifyObject.search(search_song, 1, 0, "track")
-            songs_dict = results['tracks']
-            song_items = songs_dict['items']
-            song = song_items[0]['external_urls']['spotify']
-            webbrowser.open(song)
-            # we need to decide when to stop the song. (let's play the song for 10 sec for now)
-            time.sleep(10)
-            break
-        """
     def _str_(self):
         return self.title
     class Meta:
         ordering = ['created_at']
-"""
-class CustomUser(AbstractUser):
-    username = None
-    email = models.EmailField(_('email address'), unique=True)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
-    objects = CustomUserManager()
-
-    spouse_name = models.CharField(blank=True, max_length=100)
-    date_of_birth = models.DateField(blank=True, null=True)
-    
-
-    def __str__(self):
-        return self.email
-"""
 
 """
 class Playlist(models.Model):

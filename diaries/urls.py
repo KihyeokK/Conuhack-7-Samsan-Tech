@@ -14,12 +14,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
 ]
 
-"""
-path('google/login/', views.google_login, name='google_login'),
-path('google/callback/', views.google_callback, name='google_callback'),
-path('google/login/finish/', views.GoogleLogin.as_view(), name='google_login_todjango'),
-"""
-
 # We don't necessarily need to add these extra url patterns in, but it gives us a simple,
 # clean way of referring to a specific format.
 urlpatterns = format_suffix_patterns(urlpatterns)
