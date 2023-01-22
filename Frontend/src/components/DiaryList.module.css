@@ -5,10 +5,16 @@
     width: 90%;
     height: 1rem;
     padding: 1rem;
-    border-radius: 29px;
+    border-radius: 19px;
     background-color: rgba(255, 255, 255, 0.63);
+    cursor: pointer;
 }
 
 .scrollable {
     overflow-y: scroll;
+}
+
+.searchLogo {
+    height: 1.4rem;
+    max-width: 100%;
 }

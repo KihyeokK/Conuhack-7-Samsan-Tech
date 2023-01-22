@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./DiaryList.module.css";
+import searchLogo from "./resources/images/Search.png"
 
 import DiaryEntry from "./DiaryEntry";
 
@@ -17,8 +18,7 @@ const DiaryList = (props) => {
     },
     {
       id: "2",
-      diary:
-        "aydyfyasdfdsfysadyfsdfdsyfasdfasf",
+      diary: "aydyfyasdfdsfysadyfsdfdsyfasdfasf",
       emotions: ["calm"],
       playlistUrl: "dafdsfdfasdfs",
     },
@@ -38,18 +38,18 @@ const DiaryList = (props) => {
     },
   ];
 
-  const diaryList = dummyDiaryEntriesData.map((diaryEntry) => (
-    <DiaryEntry
-      onClick={props.onClick}
-      className={styles["diary-entry"]}
-      key={diaryEntry.id}
-      date="Sep 09, 2023"
-      isLiked={true}
-      diary={diaryEntry.diary}
-      emotions={diaryEntry.emotions}
-      playlistUrl={diaryEntry.playlistUrl}
-    />
-  ));
+  // const diaryList = dummyDiaryEntriesData.map((diaryEntry) => (
+  //   <DiaryEntry
+  //     onClick={props.onClick}
+  //     className={styles["diary-entry"]}
+  //     key={diaryEntry.id}
+  //     date="Sep 09, 2023"
+  //     isLiked={true}
+  //     diary={diaryEntry.diary}
+  //     emotions={diaryEntry.emotions}
+  //     playlistUrl={diaryEntry.playlistUrl}
+  //   />
+  // ));
   const fetchDiaryEntries = (userId) => {
     //fetch from backend
     //use setMood
@@ -63,12 +63,31 @@ const DiaryList = (props) => {
     //setDiaryEntries = axios.get
     console.log("trying to fetch within useEffect in DiaryList component");
     fetch("http://127.0.0.1:8000/diaries/")
-      .then((response) => console.log(response.json()))
+      .then((response) => {
+        return response.json();
+      }).then(data => {
+        console.log("data is", data);
+        const diaryList = data.map((diaryEntry) => (
+          <DiaryEntry
+            onClick={props.onClick}
+            className={styles["diary-entry"]}
+            key={diaryEntry.id}
+            date={new Date(diaryEntry["created_at"]).toDateString()}
+            isLiked={diaryEntry["is_liked"]}
+            diary={diaryEntry.content}
+            emotions={diaryEntry.mood}
+            playlistUrl={diaryEntry.music}
+          />
+        ));
+        setDiaryEntries(diaryList);
+      })
       .catch((err) => console.log(err));
     //setIsDiaryEntryAdded(false);
-  });
+  }, []);
 
-  return <ul className={styles.scrollable}>{diaryList}</ul>;
+  return <ul className={styles.scrollable}>
+    <li className={styles["diary-entry"]}><span><img className={styles.searchLogo} src={searchLogo} alt="Logo" /></span></li>
+    {diaryEntries}</ul>;
 };
 
 export default DiaryList;

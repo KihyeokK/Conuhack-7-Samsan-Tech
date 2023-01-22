@@ -1,14 +1,16 @@
-import Card from "./UI/Card";
+import CardForSpecificDiary from './UI/CardForSpecificDiary';
+import styles from './SpecificDiaryEntry.module.css';
+import logo from "./resources/images/Musical_Notes.png";
 
 const SpecificDiaryEntry = (props) => {
     console.log(props.diary);
   return (
-    <Card>
-      <h3>{props.diary.date}</h3>
-      <p>{props.diary.diary}</p>
-      {props.diary.emotions}
-      {props.diary.playListUrl}
-    </Card>
+    <CardForSpecificDiary className={styles.cardDiary}>
+      <h3 className={styles.date}>{props.diary.date}</h3>
+      <p className={styles.diary}>{props.diary.diary}</p>
+      <div className={styles.emotions}>Analyzed emotion: {props.diary.emotions}</div>
+      <a className={styles.link} href={props.diary.playlistUrl} target="_blank"><img className={styles.expandLogo} src={logo} alt="Logo" /></a>
+    </CardForSpecificDiary>
   );
 };
 

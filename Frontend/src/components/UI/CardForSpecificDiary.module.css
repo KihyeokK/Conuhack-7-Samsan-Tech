@@ -3,12 +3,11 @@
     justify-content: left;
     margin-top: 2rem;
     color: white;
-    width: 80%;
-    height: 31rem;
+    width: 40%;
+    height: 35rem;
     padding: 1rem;
     margin-left: 1rem;
     border-right: 5rem;
-
     border-radius: 29px;
     background-color: rgba(255, 255, 255, 0.63);
 }

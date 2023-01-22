@@ -1,7 +1,7 @@
 const DiaryEntry = (props) => {
   const onLiClickHandler = () => {
     props.onClick({
-      id: "4",
+      id: props.id,
       diary: props.diary,
       date: props.date,
       isLiked: props.isLiked,

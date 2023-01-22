@@ -58,7 +58,7 @@ const DiaryForm = (props) => {
           name="ManualDiary"
           id="ManualDiary"
           cols="30"
-          rows="19"
+          rows="17"
           onChange={manualDiaryInputChangeHandler}
         ></textarea>
         <input
