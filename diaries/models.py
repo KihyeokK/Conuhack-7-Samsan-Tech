@@ -13,7 +13,7 @@ from .managers import CustomUserManager
 
 fpath = ""
 
-# Create your models here.
+# Create your models here. 
 class Diary(models.Model):
     author = models.ForeignKey('auth.User', related_name='diaries', on_delete=models.CASCADE)
     title = models.CharField(max_length=120, default="no title", unique=True)
