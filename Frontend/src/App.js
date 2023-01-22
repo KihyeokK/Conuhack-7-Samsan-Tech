@@ -3,6 +3,7 @@ import LogInForm from "./components/LogInForm";
 import MyDiary from "./components/MyDiary";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useState, useEffect } from "react";
+import { Route } from 'react-router-dom';
 
 function App() {
   // const spotifyApi = new SpotifyWebApi();
@@ -18,6 +19,10 @@ function App() {
   // })
   return (
     <div className="App">
+      {/* <Route path="/" exact component={MyDiary} />
+      <Route path="/login" component={LogInForm} />
+      <Route path="/my-entries" component={MyDiary} />
+      <Route path="/my-music" component={MyDiary} /> */}
       {/* <h2>Welcome Back</h2>
       <LogInForm></LogInForm> */}
       <MyDiary />

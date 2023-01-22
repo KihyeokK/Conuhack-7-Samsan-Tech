@@ -24,33 +24,43 @@ const DiaryForm = (props) => {
     //send request to music api and get songs
     //as the state changes, useEffect should update context for mood list and draw song, album, etc.
     console.log(event.target);
-    const fd = new FormData();
-    fd.append("uploadedFile", enteredFile, enteredFile.name);
-    console.log("formdata is", fd);
-    axios({
-      method: "post",
-      url: "/user/12345",
-      data: {
-        content: enteredManualDiary,
-        FormData: fd,
-      },
-    });
-  };
-
-  useEffect(() => {
     if (enteredFile != null) {
-      console.log(enteredFile);
-      // console.log("value", event.target.value);
-
-      // reader.addEventListener("load", () => {
-      //     console.log(reader.result);
-      // })
       const fd = new FormData();
       fd.append("uploadedFile", enteredFile, enteredFile.name);
       console.log("formdata is", fd);
-      axios.post("http://127.0.0.1:8000/diaries", fd);
     }
-  }, [enteredFile]);
+    // axios({
+    //   method: "post",
+    //   url: "http://127.0.0.1:8000/diaries/",
+    //   data: {
+    //     content: enteredManualDiary
+    //   },
+    // });
+    axios.post("http://127.0.0.1:8000/diaries/", {
+      id: 999,
+      author: 1,
+      created_at: "",
+      content: enteredManualDiary,
+      is_liked: "",
+      mood: "",
+      music: ""
+    })
+  };
+
+  // useEffect(() => {
+  //   if (enteredFile != null) {
+  //     console.log(enteredFile);
+  //     // console.log("value", event.target.value);
+
+  //     // reader.addEventListener("load", () => {
+  //     //     console.log(reader.result);
+  //     // })
+  //     const fd = new FormData();
+  //     fd.append("uploadedFile", enteredFile, enteredFile.name);
+  //     console.log("formdata is", fd);
+  //     axios.post("http://127.0.0.1:8000/diaries", fd);
+  //   }
+  // }, [enteredFile]);
 
   return (
     <form onSubmit={fetchMusicHandler}>
