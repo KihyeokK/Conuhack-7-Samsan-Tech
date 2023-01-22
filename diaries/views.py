@@ -1,37 +1,34 @@
 from .models import Diary
 from .serializers import DiarySerializer, UserSerializer
-from rest_framework import generics, permissions
 from django.contrib.auth.models import User
-from .permissions import IsOwnerOrReadOnly
 # to create a single entry point to our API
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse # to return fully-qualified URLs; 
-
-
 # converting generic views to function-based views
 from rest_framework import status
 
 
 @api_view(['GET', 'POST'])
-def diary_list(request):
+def diary_list(request, format=None):
     """
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
         diaries = Diary.objects.all()
+        #diaries = Diary.objects.filter(author=request.user)
         serializer = DiarySerializer(diaries, many=True)
         return Response(serializer.data)
-
     elif request.method == 'POST':
         serializer = DiarySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def snippet_detail(request, pk):
+def diary_detail(request, pk, format=None):
     """
     Retrieve, update or delete a code snippet.
     """
@@ -56,7 +53,7 @@ def snippet_detail(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST'])
-def diary_list(request):
+def user_list(request):
     """
     List all code snippets, or create a new snippet.
     """
@@ -72,7 +69,7 @@ def diary_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def snippet_detail(request, pk):
+def user_detail(request, pk):
     """
     Retrieve, update or delete a code snippet.
     """
