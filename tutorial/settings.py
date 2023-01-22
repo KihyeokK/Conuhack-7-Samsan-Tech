@@ -15,15 +15,10 @@ MEDIA_URL = '/media/'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-]
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1",
-    
-]
+ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1",]
 CORS_ALLOW_CREDENTIALS = False
-
+# CORS_ORIGIN_ALLOW_ALL = True   
 
 # Application definition
 
