@@ -2,6 +2,9 @@ import LoadMusicButton from "./LoadMusicButton";
 import Card from "./UI/Card";
 import styles from "./DiaryForm.module.css";
 import { useEffect, useState } from "react";
+import axios from 'axios';
+
+
 
 const DiaryForm = (props) => {
   const [enteredManualDiary, setEnteredManualDiary] = useState(null);
@@ -37,9 +40,16 @@ const DiaryForm = (props) => {
   const fetchMusicHandler = async (event) => {
     event.preventDefault();
     //send diary data to backend and get emotions
-    //send request to music api and get songs, then store it in state
+    //send request to music api and get songs
     //as the state changes, useEffect should update context for mood list and draw song, album, etc.
     console.log(event.target);
+    // axios({
+    //   method: 'post',
+    //   url: '/user/12345',
+    //   data: {
+    //     FormData: fd;
+    //   }
+    // });
   };
 
   useEffect(() => {
@@ -52,7 +62,8 @@ const DiaryForm = (props) => {
       // })
       const fd = new FormData();
       fd.append("uploadedFile", enteredFile, enteredFile.name);
-      console.log(fd);
+      console.log("formdata is", fd);
+      axios.post("http://127.0.0.1:8000/diaries",fd);
     }
   }, [enteredFile]);
 
