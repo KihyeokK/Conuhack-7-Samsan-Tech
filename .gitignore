@@ -1,2 +1,3 @@
 eval "$(ssh-agent -s)".pub
 eval "$(ssh-agent -s)"
+diaries/__pycache__*
