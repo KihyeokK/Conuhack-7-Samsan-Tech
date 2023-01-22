@@ -16,9 +16,38 @@ MEDIA_URL = '/media/'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-CORS_ALLOWED_ORIGINS = ["http://127.0.0.1",]
-CORS_ALLOW_CREDENTIALS = False
-# CORS_ORIGIN_ALLOW_ALL = True   
+#CORS_ALLOWED_ORIGINS = ["http://127.0.0.1/",]
+#CORS_ALLOW_CREDENTIALS = False
+
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+)
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
+
+
+# CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -33,7 +62,7 @@ INSTALLED_APPS = [
     'diaries',
     # django-rest-framework
     'rest_framework',
-    
+
     'corsheaders',
 ]
 

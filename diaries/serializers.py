@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class DiarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Diary
-        fields ='__all__'
+        fields = ['content']
+        #fields ='__all__'
 
 # diaries is a reverse relationship on the User model, it will not be included by default
 #  when using the ModelSerializer class, so we needed to add an explicit field for it

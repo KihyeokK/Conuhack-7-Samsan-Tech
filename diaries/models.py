@@ -9,12 +9,12 @@ import io
 from google.cloud import vision
 import openai
 
-fpath = "/Users/jaewonmoon/Downloads/sad.jpg"
+fpath = "/Users/joekimkh/Desktop/sad.jpg"
 
 # Create your models here. 
 class Diary(models.Model):
-    author = models.ForeignKey('auth.User', related_name='diaries', on_delete=models.CASCADE)
-    title = models.CharField(max_length=120, default="no title", unique=True)
+    #author = models.ForeignKey('auth.User', related_name='diaries', on_delete=models.CASCADE)
+    #title = models.CharField(max_length=120, default="no title", unique=True)
     content = models.TextField(default="Write Here")
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     is_liked = models.BooleanField(default=False)
@@ -22,7 +22,7 @@ class Diary(models.Model):
     music = models.URLField(max_length=200, null=True, blank=True)
     def google_cloud_ocr(self, path):
         """Detects document features in an image."""
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/Users/jaewonmoon/Downloads/hackthon23-df6b6798f88b.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/Users/joekimkh/Downloads/hackthon23-df6b6798f88b.json"
         client = vision.ImageAnnotatorClient()
 
         with io.open(path, 'rb') as image_file:
@@ -41,7 +41,7 @@ class Diary(models.Model):
         
     def GPTchat(self, text):
         # Replace "YOUR_API_KEY" with your OpenAI API key
-        openai.api_key = "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"
+        openai.api_key = "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"
 
         prompt = "in one word and without repeating the question, what is the emotion behind this text " + text
 
