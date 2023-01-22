@@ -30,16 +30,16 @@ const DiaryForm = (props) => {
     }
 
     const enteredFileInputChangeHandler = (event) => {
-        SetEnteredFile(event.target.files[0]);
+        SetEnteredFile(event.target.files[0].path);
         console.log(event.target.files[0]);
         // console.log("value", event.target.value);
 
         // reader.addEventListener("load", () => {
         //     console.log(reader.result);
         // })
-        // const fd = new FormData();
-        // fd.append("uploadedFile", enteredFile);
-        // console.log(fd);
+        const fd = new FormData();
+        fd.append("uploadedFile", enteredFile);
+        console.log(fd);
     }
     
   const fetchMusicHandler = async (event) => {
@@ -51,6 +51,7 @@ const DiaryForm = (props) => {
   };
   return (
     <form onSubmit={fetchMusicHandler}>
+      {enteredFile}
       <Card>
         <h3>tell us about your day</h3>
         <textarea

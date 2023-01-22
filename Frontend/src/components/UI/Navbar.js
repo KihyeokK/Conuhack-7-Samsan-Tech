@@ -27,8 +27,6 @@ const Navbar = (props) => {
         </li>
         <li className={styles['nav-item-arrow']}>
           {/* use Link tag  */}
-          <FontAwesomeIcon icon={"fa-chevrons-right"} />
-          <FontAwesomeIcon icon={['fal', 'code']} size="sm" />
           <button onClick={onExpandClickHandler}>
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
