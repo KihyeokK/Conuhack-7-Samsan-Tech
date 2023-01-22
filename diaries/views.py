@@ -9,35 +9,92 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse # to return fully-qualified URLs; 
 
 
-class DiaryList(generics.ListCreateAPIView):
-    queryset = Diary.objects.all()
-    serializer_class = DiarySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    # to modify how the instance save is managed, and handle any information that
-    # is implicit in the incoming request or requested URL
-    def perform_create(self, serializer):
-        # The create() method of our serializer will now be passed an additional 'author' field, 
-        # along with the validated data from the request.
-        serializer.save(author=self.request.user)
-    def get_queryset(self):
-        return Diary.objects.filter(author=self.request.user)
-    
+# converting generic views to function-based views
+from rest_framework import status
 
-class DiaryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Diary.objects.all()
-    serializer_class = DiarySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
-    def get_queryset(self):
-        return Diary.objects.filter(author=self.request.user)
-    
 
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+@api_view(['GET', 'POST'])
+def diary_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        diaries = Diary.objects.all()
+        serializer = DiarySerializer(diaries, many=True)
+        return Response(serializer.data)
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+    elif request.method == 'POST':
+        serializer = DiarySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def snippet_detail(request, pk):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        diary = Diary.objects.get(pk=pk)
+    except Diary.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = DiarySerializer(diary)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = DiarySerializer(diary, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        diary.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def diary_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def snippet_detail(request, pk):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        user = User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = UserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
 def api_root(request, format=None):
