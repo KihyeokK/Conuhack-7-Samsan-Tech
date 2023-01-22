@@ -1,4 +1,4 @@
 eval "$(ssh-agent -s)".pub
 eval "$(ssh-agent -s)"
-diaries/__pycache__*
-tutorial/__pycache__*
+diaries/__pycache__/
+tutorial/__pycache__/
