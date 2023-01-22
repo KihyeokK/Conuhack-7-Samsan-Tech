@@ -20,6 +20,8 @@ def diary_list(request, format=None):
         serializer = DiarySerializer(diaries, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
+        # check if the given data is image or text
+        #if request.FILES:
         serializer = DiarySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

@@ -45,3 +45,6 @@ text2emotion==0.0.5
 tqdm==4.64.1
 urllib3==1.26.14
 yarl==1.8.2
+google-cloud-vision
+openai
+opencv-python
