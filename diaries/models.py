@@ -1,17 +1,15 @@
 import time
 from django.db import models
-import text2emotion as te
 import json
 import spotipy
 import webbrowser
-# custom user ONLY email
-'''
-from django.contrib.auth.models import AbstractUser
-from django.utils.translation import ugettext_lazy as _
-from .managers import CustomUserManager
-'''
+# google_cloud_ocr
+import os
+import io
+from google.cloud import vision
+import openai
 
-fpath = ""
+fpath = "/Users/jaewonmoon/Downloads/sad.jpg"
 
 # Create your models here. 
 class Diary(models.Model):
@@ -22,25 +20,51 @@ class Diary(models.Model):
     is_liked = models.BooleanField(default=False)
     mood = models.CharField(max_length=10, null=True, blank=True)
     music = models.URLField(max_length=200, null=True, blank=True)
-    def extract_mood(self, *args, **kwargs):
-        """()->str
-        emotions: 'Angry', 'Fear', 'Happy', 'Sad', 'Surprise'
-        if every emotion has the same numerical scale, then...
-        """
-        d_emotions = te.get_emotion(self.content)
-        emotion_max = max(d_emotions, key=d_emotions.get)
-        emotion_min = min(d_emotions, key=d_emotions.get)
-        if emotion_max == emotion_min:
-            return "No feeling"
-        return emotion_max
-    
+    def google_cloud_ocr(self, path):
+        """Detects document features in an image."""
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/Users/jaewonmoon/Downloads/hackthon23-df6b6798f88b.json"
+        client = vision.ImageAnnotatorClient()
+
+        with io.open(path, 'rb') as image_file:
+            content = image_file.read()
+
+        image = vision.Image(content=content)
+
+        response = client.document_text_detection(image=image)
+        if response.error.message:
+            raise Exception(
+                '{}\nFor more info on error messages, check: '
+                'https://cloud.google.com/apis/design/errors'.format(
+                    response.error.message))
+        
+        return response.full_text_annotation.text
+        
+    def GPTchat(self, text):
+        # Replace "YOUR_API_KEY" with your OpenAI API key
+        openai.api_key = "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"
+
+        prompt = "in one word and without repeating the question, what is the emotion behind this text " + text
+
+        # Generate a response from the model
+        completions = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=prompt,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        # Print the response
+        response_text = completions.choices[0].text
+        return response_text
+
     def save(self, *args, **kwargs):
         # to update the mood field when we create the object
         if self.content == "Write Here":
             # access the file using the file path
-            
             pass
-        self.mood = self.extract_mood(self.content)
+        text = self.google_cloud_ocr(fpath)
+        self.mood = self.GPTchat(text)
         self.music = self.play_music()
         super().save(*args, **kwargs)
 

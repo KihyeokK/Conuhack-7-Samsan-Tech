@@ -1,11 +1,11 @@
-def detect_document(path):
-    import cv2
-    import os
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "put path here plz"
-    diaryImage2 = cv2.imread(path)
+import os
+import io
+from google.cloud import vision
+import openai
+
+def google_cloud_ocr(path):
     """Detects document features in an image."""
-    from google.cloud import vision
-    import io
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/Users/jaewonmoon/Downloads/hackthon23-df6b6798f88b.json"
     client = vision.ImageAnnotatorClient()
 
     with io.open(path, 'rb') as image_file:
@@ -14,8 +14,6 @@ def detect_document(path):
     image = vision.Image(content=content)
 
     response = client.document_text_detection(image=image)
-    print(response.full_text_annotation.text)
-
     if response.error.message:
         raise Exception(
             '{}\nFor more info on error messages, check: '
@@ -25,8 +23,6 @@ def detect_document(path):
     return response.full_text_annotation.text
 
 def GPTchat(text):
-  import openai
-
   # Replace "YOUR_API_KEY" with your OpenAI API key
   openai.api_key = "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"
 

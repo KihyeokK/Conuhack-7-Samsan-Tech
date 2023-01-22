@@ -47,4 +47,4 @@ urllib3==1.26.14
 yarl==1.8.2
 google-cloud-vision
 openai
-cv2
+opencv-python
