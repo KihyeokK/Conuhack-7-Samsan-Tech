@@ -3,7 +3,6 @@ import LogInForm from "./components/LogInForm";
 import MyDiary from "./components/MyDiary";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useState, useEffect } from "react";
-import { Route } from 'react-router-dom';
 
 function App() {
   // const spotifyApi = new SpotifyWebApi();

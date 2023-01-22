@@ -2,19 +2,19 @@ const DiaryEntry = (props) => {
   const onLiClickHandler = () => {
     props.onClick({
       id: props.id,
-      diary: props.diary,
-      date: props.date,
-      isLiked: props.isLiked,
-      emotions: props.emotions,
-      playlistUrl: props.playlistUrl,
+      content: props.content,
+      created_at: props.created_at,
+      is_liked: props.is_liked,
+      mood: props.mood,
+      music: props.music,
     });
     console.log("onclickHandler");
   };
 
   return (
     <li onClick={onLiClickHandler} className={props.className}>
-      my mood on <span>{props.date}</span>
-      <span>{props.isLiked}</span>
+      my mood on <span>{new Date(props.created_at).toDateString()}</span>
+      <span>{props.is_liked}</span>
     </li>
   );
 };

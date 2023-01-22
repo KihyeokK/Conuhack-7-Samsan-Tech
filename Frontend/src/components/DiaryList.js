@@ -72,18 +72,18 @@ const DiaryList = (props) => {
             onClick={props.onClick}
             className={styles["diary-entry"]}
             key={diaryEntry.id}
-            date={new Date(diaryEntry["created_at"]).toDateString()}
-            isLiked={diaryEntry["is_liked"]}
-            diary={diaryEntry.content}
-            emotions={diaryEntry.mood}
-            playlistUrl={diaryEntry.music}
+            created_at={diaryEntry["created_at"]}
+            is_liked={diaryEntry["is_liked"]}
+            content={diaryEntry.content}
+            mood={diaryEntry.mood}
+            music={diaryEntry.music}
           />
         ));
         setDiaryEntries(diaryList);
       })
       .catch((err) => console.log(err));
     //setIsDiaryEntryAdded(false);
-  }, []);
+  }, [props.isFetched]);
 
   return <ul className={styles.scrollable}>
     <li className={styles["diary-entry"]}><span><img className={styles.searchLogo} src={searchLogo} alt="Logo" /></span></li>

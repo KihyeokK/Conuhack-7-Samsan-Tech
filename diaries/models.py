@@ -41,7 +41,7 @@ class Diary(models.Model):
         
     def GPTchat(self, text):
         # Replace "YOUR_API_KEY" with your OpenAI API key
-        openai.api_key = "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"
+        openai.api_key = "sk-"
 
         prompt = "in one word and without repeating the question, what is the emotion behind this text " + text
 

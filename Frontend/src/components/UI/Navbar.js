@@ -8,7 +8,6 @@ import mask from "../resources/images/Theatre_Mask.png";
 import userLogo from "../resources/images/User.png";
 import music from "../resources/images/Musical_Notes.png";
 import mainLogo from "../resources/images/mainLogo.png"
-import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
   const [isNavbarExpanded, setIsNavBarExpanded] = useState(false);

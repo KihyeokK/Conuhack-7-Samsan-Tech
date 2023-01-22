@@ -6,10 +6,10 @@ const SpecificDiaryEntry = (props) => {
     console.log(props.diary);
   return (
     <CardForSpecificDiary className={styles.cardDiary}>
-      <h3 className={styles.date}>{props.diary.date}</h3>
-      <p className={styles.diary}>{props.diary.diary}</p>
-      <div className={styles.emotions}>Analyzed emotion: {props.diary.emotions}</div>
-      <a className={styles.link} href={props.diary.playlistUrl} target="_blank"><img className={styles.expandLogo} src={logo} alt="Logo" /></a>
+      <h3 className={styles.date}>{new Date(props.diary.created_at).toDateString()}</h3>
+      <p className={styles.diary}>{props.diary.content}</p>
+      <div className={styles.emotions}>Analyzed emotion: {props.diary.mood}</div>
+      <a className={styles.link} href={props.diary.music} target="_blank"><img className={styles.expandLogo} src={logo} alt="Logo" /></a>
     </CardForSpecificDiary>
   );
 };

@@ -36,15 +36,15 @@ const DiaryForm = (props) => {
     //     content: enteredManualDiary
     //   },
     // });
-    axios.post("http://127.0.0.1:8000/diaries/", {
-      id: 999,
-      author: 1,
+    const response = await axios.post("http://127.0.0.1:8000/diaries/", {
       created_at: "",
       content: enteredManualDiary,
-      is_liked: "",
+      is_liked: false,
       mood: "",
       music: ""
     })
+    console.log("returned response is", response.data);
+    props.onFetched(response.data); // set isFetched true and update
   };
 
   // useEffect(() => {
