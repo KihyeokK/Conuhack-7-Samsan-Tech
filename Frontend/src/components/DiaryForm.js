@@ -1,47 +1,39 @@
 import LoadMusicButton from "./LoadMusicButton";
 import Card from "./UI/Card";
 import styles from "./DiaryForm.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const DiaryForm = (props) => {
-    const [enteredManualDiary, setEnteredManualDiary] = useState(null);
-    const [enteredFile, SetEnteredFile] = useState(null);
+  const [enteredManualDiary, setEnteredManualDiary] = useState(null);
+  const [enteredFile, SetEnteredFile] = useState(null);
 
-    function convertToDataURLviaCanvas(url, callback, outputFormat){
-        var img = new Image();
-        img.crossOrigin = 'Anonymous';
-        img.onload = function(){
-            var canvas = document.createElement('CANVAS');
-            var ctx = canvas.getContext('2d');
-            var dataURL;
-            canvas.height = this.height;
-            canvas.width = this.width;
-            ctx.drawImage(this, 0, 0);
-            dataURL = canvas.toDataURL(outputFormat);
-            callback(dataURL);
-            canvas = null; 
-        };
-        img.src = url;
-    }
+  function convertToDataURLviaCanvas(url, callback, outputFormat) {
+    var img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.onload = function () {
+      var canvas = document.createElement("CANVAS");
+      var ctx = canvas.getContext("2d");
+      var dataURL;
+      canvas.height = this.height;
+      canvas.width = this.width;
+      ctx.drawImage(this, 0, 0);
+      dataURL = canvas.toDataURL(outputFormat);
+      callback(dataURL);
+      canvas = null;
+    };
+    img.src = url;
+  }
 
-    const manualDiaryInputChangeHandler = (event) => {
-        setEnteredManualDiary(event.target.value);
-        console.log(enteredManualDiary);
-    }
+  const manualDiaryInputChangeHandler = (event) => {
+    setEnteredManualDiary(event.target.value);
+    console.log(enteredManualDiary);
+  };
 
-    const enteredFileInputChangeHandler = (event) => {
-        SetEnteredFile(event.target.files[0].path);
-        console.log(event.target.files[0]);
-        // console.log("value", event.target.value);
+  const enteredFileInputChangeHandler = (event) => {
+    SetEnteredFile(event.target.files[0]);
+    console.log(event.target.files[0]);
+  };
 
-        // reader.addEventListener("load", () => {
-        //     console.log(reader.result);
-        // })
-        const fd = new FormData();
-        fd.append("uploadedFile", enteredFile);
-        console.log(fd);
-    }
-    
   const fetchMusicHandler = async (event) => {
     event.preventDefault();
     //send diary data to backend and get emotions
@@ -49,9 +41,23 @@ const DiaryForm = (props) => {
     //as the state changes, useEffect should update context for mood list and draw song, album, etc.
     console.log(event.target);
   };
+
+  useEffect(() => {
+    if (enteredFile != null) {
+      console.log(enteredFile);
+      // console.log("value", event.target.value);
+  
+      // reader.addEventListener("load", () => {
+      //     console.log(reader.result);
+      // })
+      const fd = new FormData();
+      fd.append("uploadedFile", enteredFile, enteredFile.name);
+      console.log(fd);
+    }
+  }, [enteredFile]);
+
   return (
     <form onSubmit={fetchMusicHandler}>
-      {enteredFile}
       <Card>
         <h3>tell us about your day</h3>
         <textarea
@@ -61,7 +67,11 @@ const DiaryForm = (props) => {
           rows="25"
           onChange={manualDiaryInputChangeHandler}
         ></textarea>
-        <input onChange={enteredFileInputChangeHandler} type="file" accept=".png,.jpeg,.jpg" />
+        <input
+          onChange={enteredFileInputChangeHandler}
+          type="file"
+          accept=".png,.jpeg,.jpg"
+        />
       </Card>
       <LoadMusicButton />
     </form>
