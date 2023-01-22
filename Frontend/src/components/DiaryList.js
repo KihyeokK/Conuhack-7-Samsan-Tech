@@ -63,7 +63,7 @@ const DiaryList = (props) => {
     //setDiaryEntries = axios.get
     console.log("trying to fetch within useEffect in DiaryList component");
     fetch("http://127.0.0.1:8000/diaries/")
-      .then((response) => console.log(response))
+      .then((response) => console.log(response.json()))
       .catch((err) => console.log(err));
     //setIsDiaryEntryAdded(false);
   });

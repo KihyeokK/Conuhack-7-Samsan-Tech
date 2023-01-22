@@ -4,8 +4,10 @@ form {
 
 textarea {
     width: 90%;
-    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.63);
     overflow: auto;
     outline: none;
+    font-size: 1.3rem;
     resize: none; /*remove the resize handle on the bottom right*/
 }

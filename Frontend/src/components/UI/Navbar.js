@@ -2,6 +2,7 @@ import styles from "./Navbar.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
+import logo from '../../../public/Double_Up.png';
 
 
 const Navbar = (props) => {
@@ -28,7 +29,8 @@ const Navbar = (props) => {
         <li className={styles['nav-item-arrow']}>
           {/* use Link tag  */}
           <button onClick={onExpandClickHandler}>
-            <FontAwesomeIcon icon={faChevronRight} />
+            {/* <FontAwesomeIcon icon={faChevronRight} /> */}
+            {/* <img src={logo} alt="Logo" />; */}
           </button>
         </li>
       </ul>

@@ -10,23 +10,6 @@ const DiaryForm = (props) => {
   const [enteredManualDiary, setEnteredManualDiary] = useState(null);
   const [enteredFile, SetEnteredFile] = useState(null);
 
-  function convertToDataURLviaCanvas(url, callback, outputFormat) {
-    var img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.onload = function () {
-      var canvas = document.createElement("CANVAS");
-      var ctx = canvas.getContext("2d");
-      var dataURL;
-      canvas.height = this.height;
-      canvas.width = this.width;
-      ctx.drawImage(this, 0, 0);
-      dataURL = canvas.toDataURL(outputFormat);
-      callback(dataURL);
-      canvas = null;
-    };
-    img.src = url;
-  }
-
   const manualDiaryInputChangeHandler = (event) => {
     setEnteredManualDiary(event.target.value);
     console.log(enteredManualDiary);
@@ -63,7 +46,7 @@ const DiaryForm = (props) => {
       const fd = new FormData();
       fd.append("uploadedFile", enteredFile, enteredFile.name);
       console.log("formdata is", fd);
-      axios.post("http://127.0.0.1:8000/diaries",fd);
+      axios.post("http://127.0.0.1:8000/diaries", fd);
     }
   }, [enteredFile]);
 
@@ -75,7 +58,7 @@ const DiaryForm = (props) => {
           name="ManualDiary"
           id="ManualDiary"
           cols="30"
-          rows="25"
+          rows="19"
           onChange={manualDiaryInputChangeHandler}
         ></textarea>
         <input
