@@ -40,3 +40,11 @@ Kihyeok Kim: Worked on frontend, built React components and helped connecting to
 7. `python manage.py createsuperuser`
 8. `python manage.py runserver`
 9. press login button in the browser
+
+Enna Lee: Designer
+
+Current Design
+* https://www.figma.com/file/r3YiHvXOB9VhKbetV99dyf/ConUHack7?node-id=0%3A1&t=tMrJKwyhlQyIn26t-1
+
+Developed Design
+* https://www.figma.com/file/Oq4qpUf2UqNvT72cNBW7Zk/ConUHack7-Future?node-id=0%3A1&t=HFOyVUxgRhvEk3y3-1
