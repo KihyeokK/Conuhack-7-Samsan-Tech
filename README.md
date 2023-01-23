@@ -21,6 +21,7 @@ Team Members: Jaewon Moon, Enna Lee, Benjamin Tan, Kihyeok Kim
 ## Roles ##
 
 Kihyeok Kim: Worked on frontend, built React components and helped connecting to Django backend.
+
 Enna Lee: Designer
 
 ## Run Frontend ##
