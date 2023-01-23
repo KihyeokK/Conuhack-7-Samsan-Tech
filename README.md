@@ -21,6 +21,10 @@ Team Members: Jaewon Moon, Enna Lee, Benjamin Tan, Kihyeok Kim
 ## Roles ##
 
 Kihyeok Kim: Worked on frontend, built React components and helped connecting to Django backend.
+Jaewon Moon: Worked on backend using Django Rest Framework and used the AI part with the data sent from frontend.
+Benjamin Tan: Worked on AI part using Python libraries for NLP and extracting emotion from human face.
+              Helped the other developers use Github to work as a team more efficiently.
+Enna Lee: Designed the UI, researched on "~", presented our project.
 
 Enna Lee: Designer
 
