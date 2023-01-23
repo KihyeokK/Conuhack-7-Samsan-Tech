@@ -8,17 +8,19 @@ This project was built at Conuhacks VII. Our web application asks users to uploa
 
 Technologies used: JavaScript, Python, React, Django, Django REST framework, Google Cloud Vision API, Spotify API, ChatGPT API, Axios, Git, CSS
 
-Check out our project on Devpost and Youtube:
+Check out our project on Devpost:
 
 * https://devpost.com/software/dr-m
-
-* https://youtu.be/Krxvm5JhXx4
 
 Team Members: Jaewon Moon, Enna Lee, Benjamin Tan, Kihyeok Kim
 
 ## Video Demo ##
 
-[![](https://markdown-videos.deta/youtube/Krxvm5JhXx4)](https://youtu.be/Krxvm5JhXx4)
+* https://youtu.be/Krxvm5JhXx4
+
+## Roles ##
+
+Kihyeok Kim: Worked on frontend, built React components and helped connecting to Django backend.
 
 ## Run Frontend ##
 
