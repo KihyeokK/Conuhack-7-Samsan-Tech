@@ -21,6 +21,7 @@ Team Members: Jaewon Moon, Enna Lee, Benjamin Tan, Kihyeok Kim
 ## Roles ##
 
 Kihyeok Kim: Worked on frontend, built React components and helped connecting to Django backend.
+Enna Lee: Designer
 
 ## Run Frontend ##
 
@@ -41,7 +42,8 @@ Kihyeok Kim: Worked on frontend, built React components and helped connecting to
 8. `python manage.py runserver`
 9. press login button in the browser
 
-Enna Lee: Designer
+
+## Design ##
 
 Current Design
 * https://www.figma.com/file/r3YiHvXOB9VhKbetV99dyf/ConUHack7?node-id=0%3A1&t=tMrJKwyhlQyIn26t-1
