@@ -24,11 +24,11 @@ const DiaryForm = (props) => {
     //send request to music api and get songs
     //as the state changes, useEffect should update context for mood list and draw song, album, etc.
     console.log(event.target);
-    if (enteredFile != null) {
-      const fd = new FormData();
-      fd.append("uploadedFile", enteredFile, enteredFile.name);
-      console.log("formdata is", fd);
-    }
+    // if (enteredFile != null) {
+    //   const fd = new FormData();
+    //   fd.append("uploadedFile", enteredFile, enteredFile.name);
+    //   console.log("formdata is", fd);
+    // }
     // axios({
     //   method: "post",
     //   url: "http://127.0.0.1:8000/diaries/",

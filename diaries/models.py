@@ -11,7 +11,7 @@ import openai
 
 fpath = "/Users/joekimkh/Desktop/sad.jpg"
 
-# Create your models here. 
+# Create your models here.
 class Diary(models.Model):
     #author = models.ForeignKey('auth.User', related_name='diaries', on_delete=models.CASCADE)
     #title = models.CharField(max_length=120, default="no title", unique=True)
@@ -41,7 +41,7 @@ class Diary(models.Model):
         
     def GPTchat(self, text):
         # Replace "YOUR_API_KEY" with your OpenAI API key
-        openai.api_key = "sk-"
+        openai.api_key = ""
 
         prompt = "in one word and without repeating the question, what is the emotion behind this text " + text
 
@@ -57,14 +57,16 @@ class Diary(models.Model):
         # Print the response
         response_text = completions.choices[0].text
         return response_text
-
+    
     def save(self, *args, **kwargs):
         # to update the mood field when we create the object
-        if self.content == "Write Here":
+        if self.content == None:
             # access the file using the file path
-            pass
-        text = self.google_cloud_ocr(fpath)
-        self.mood = self.GPTchat(text)
+            text = self.google_cloud_ocr(fpath)
+            self.content = text
+            self.mood = self.GPTchat(text)
+        else:
+            self.mood = self.GPTchat(self.content)
         self.music = self.play_music()
         super().save(*args, **kwargs)
 
