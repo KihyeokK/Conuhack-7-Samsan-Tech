@@ -14,17 +14,21 @@ Check out our project on Devpost:
 
 Team Members: Jaewon Moon, Enna Lee, Benjamin Tan, Kihyeok Kim
 
+## Program Screenshot ##
+
+<img width="1363" alt="Screen Shot 2023-01-23 at 3 49 01 PM" src="https://user-images.githubusercontent.com/96888460/214181563-2c42687d-3f5d-4fb3-981e-aa65c31e2986.png">
+
 ## Video Demo ##
 
 * https://youtu.be/Krxvm5JhXx4
 
 ## Roles ##
 
-Kihyeok Kim: Worked on frontend, built React components and helped connecting to Django backend.
-Jaewon Moon: Worked on backend using Django Rest Framework and used the AI part with the data sent from frontend.
-Benjamin Tan: Worked on AI part using Python libraries for NLP and extracting emotion from human face.
+* Kihyeok Kim: Worked on frontend, built React components and helped connecting to Django backend.
+* Jaewon Moon: Worked on backend using Django Rest Framework and used the AI part with the data sent from frontend.
+* Benjamin Tan: Worked on AI part using Python libraries for NLP and extracting emotion from human face.
               Helped the other developers use Github to work as a team more efficiently.
-Enna Lee: Designed the UI, researched on "~", presented our project.
+* Enna Lee: Designed the UI, researched on "~", presented our project.
 
 Enna Lee: Designer
 
